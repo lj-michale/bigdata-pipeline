@@ -15,26 +15,19 @@
  * limitations under the License.
  */
 
-package org.turing.bigdata.springboot.starter.init;
+package org.turing.bigdata.springboot.safe;
 
-import org.springframework.context.ApplicationEvent;
+import org.springframework.beans.factory.InitializingBean;
 
 /**
- * 应用初始化事件
- *
- * <p> 规约事件，通过此事件可以查看业务系统所有初始化行为
+ * FastJson安全模式，开启后关闭类型隐式传递
  *
  *
  */
-public class ApplicationInitializingEvent extends ApplicationEvent {
+public class FastJsonSafeMode implements InitializingBean {
 
-    /**
-     * Create a new {@code ApplicationEvent}.
-     *
-     * @param source the object on which the event initially occurred or with
-     *               which the event is associated (never {@code null})
-     */
-    public ApplicationInitializingEvent(Object source) {
-        super(source);
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.setProperty("fastjson2.parser.safeMode", "true");
     }
 }

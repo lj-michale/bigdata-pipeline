@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.turing.bigdata.springboot.starter.init;
+package org.turing.bigdata.springboot.init;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

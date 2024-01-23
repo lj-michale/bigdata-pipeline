@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.turing.bigdata.springboot.starter.config;
+package org.turing.bigdata.springboot.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.turing.bigdata.springboot.starter.ApplicationContextHolder;
-import org.turing.bigdata.springboot.starter.init.ApplicationContentPostProcessor;
-import org.turing.bigdata.springboot.starter.safe.FastJsonSafeMode;
+import org.turing.bigdata.springboot.ApplicationContextHolder;
+import org.turing.bigdata.springboot.safe.FastJsonSafeMode;
+import org.turing.bigdata.springboot.init.ApplicationContentPostProcessor;
 
 
 /**

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.turing.bigdata.springboot.starter;
+package org.turing.bigdata.springboot;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

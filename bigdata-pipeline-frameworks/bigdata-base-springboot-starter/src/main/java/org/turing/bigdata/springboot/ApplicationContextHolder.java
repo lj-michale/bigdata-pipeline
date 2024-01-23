@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.turing.bigdata.springboot.starter;
+package org.turing.bigdata.springboot;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
