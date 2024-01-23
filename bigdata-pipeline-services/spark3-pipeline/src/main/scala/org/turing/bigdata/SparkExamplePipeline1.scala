@@ -1,7 +1,7 @@
 package org.turing.bigdata
 
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
  * @descri:
@@ -11,20 +11,34 @@ import org.apache.spark.sql.SparkSession
  */
 object SparkExamplePipeline1 {
 
-  def main(args: Array[String]): Unit = {
+    case class DateT(name: String, birthday: String)
 
-    Logger.getLogger("org").setLevel(Level.OFF)
-    val spark = SparkSession
-      .builder
-      .master("local[*]")
-      .appName("SparkSQLExample")
-      .getOrCreate()
+    def main(args: Array[String]): Unit = {
 
-    println(" >>>>>>>>>>>>>>>>>>>>>>>>> ")
+      val spark = SparkSession.builder()
+        .master("local[*]")
+        .appName("SparkExamplePipeline1")
+        .getOrCreate()
+      import spark.implicits._
+      import org.apache.spark.sql.functions._
 
-    spark.stop()
+      val sc = spark.sparkContext
+      sc.setLogLevel("ERROR")
 
+      val DateTest: DataFrame = Seq(
+        DateT("aa", "1995-12-11 12:12:13"),
+        DateT("bb", "2000-01-14 10:10:57")
+      ).toDF()
 
-  }
+      DateTest.withColumn("current_date", current_date())
+        .withColumn("current_timestamp", current_timestamp())
+        .withColumn("date", date_format(current_timestamp(), "yyyy-MM-dd HH:mm:ss"))
+        .withColumn("date1", date_format(current_timestamp(), "yyyy-MM-dd hh:mm:ss"))
+        .withColumn("date2", date_format(col("birthday"), "yyyy-MM-dd"))
+        .show(false)
+
+      spark.close()
+
+    }
 
 }
