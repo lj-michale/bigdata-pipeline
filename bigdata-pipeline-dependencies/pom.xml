@@ -25,7 +25,7 @@
 	</developers>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>19</java.version>
 		<scala.version>2.12.12</scala.version>
 		<scala.binary.version>2.12</scala.binary.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,8 +34,8 @@
 		<maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
 		<skip.checkstyle.check>true</skip.checkstyle.check>
 		<maven-common-plugin.version>3.1.0</maven-common-plugin.version>
-		<maven.compiler.target>11</maven.compiler.target>
-		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>19</maven.compiler.target>
+		<maven.compiler.source>19</maven.compiler.source>
 		<lombok.version>1.18.30</lombok.version>
 		<spring-cloud.version>2022.0.0</spring-cloud.version>
 		<spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>

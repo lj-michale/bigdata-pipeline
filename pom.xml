@@ -18,6 +18,7 @@
         <module>bigdata-pipeline-dependencies</module>
         <module>bigdata-pipeline-frameworks</module>
         <module>bigdata-pipeline-services</module>
+        <module>bigdata-pipeline-test</module>
     </modules>
 
     <!-- 阿里云仓库配置 -->

@@ -27,7 +27,6 @@ public class SparkPipelineDemo1 {
             System.err.println("Usage: JavaWordCount <file>");
             System.exit(1);
         }*/
-
         SparkSession spark = SparkSession
                 .builder()
                 .appName("JavaWordCount")

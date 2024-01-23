@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class SparkPiApp {
     public static void main(String[] args) throws Exception {
+
         SparkConf conf = new SparkConf()
                 .setAppName("MySpark")
                 //远程连接时需要将本地包分发到 worker 否则可能报错: cannot assign instance of java.lang.invoke.SerializedLambda
@@ -21,6 +22,7 @@ public class SparkPiApp {
                 .setMaster("spark://192.168.1.6:7077");
 
         JavaSparkContext jsc = new JavaSparkContext(conf);
+
         getPi(jsc);
 
     }

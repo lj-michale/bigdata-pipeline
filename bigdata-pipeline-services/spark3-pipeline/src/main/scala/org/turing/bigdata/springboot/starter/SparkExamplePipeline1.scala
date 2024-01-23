@@ -1,4 +1,4 @@
-package org.turing.bigdata
+package org.turing.bigdata.springboot.starter
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{DataFrame, SparkSession}

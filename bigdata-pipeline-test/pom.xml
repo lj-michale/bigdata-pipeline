@@ -8,12 +8,24 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bigdata-pipeline-frameworks</artifactId>
+    <artifactId>bigdata-pipeline-test</artifactId>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>bigdata-base-springboot-starter</module>
-    </modules>
+    <properties>
 
+    </properties>
+
+    <dependencies>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
