@@ -8,19 +8,33 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bigdata-pipeline-test</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>bigdata-data-generator</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
 
     </properties>
 
-    <modules>
-        <module>bigdata-data-generator</module>
-    </modules>
-
     <dependencies>
-
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <version>0.11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

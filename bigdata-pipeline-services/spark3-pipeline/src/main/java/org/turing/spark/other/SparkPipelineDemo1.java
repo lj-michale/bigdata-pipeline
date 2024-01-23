@@ -45,6 +45,7 @@ public class SparkPipelineDemo1 {
         }
 
         spark.stop();
+
     }
 
 }
