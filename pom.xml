@@ -6,7 +6,9 @@
     <artifactId>bigdata-pipeline</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    
+
+    <description> bigdata-pipeline: bigdata learning </description>
+
     <properties>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>

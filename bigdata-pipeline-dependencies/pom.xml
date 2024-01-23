@@ -8,9 +8,6 @@
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>bigdata-pipeline: bigdata learning </name>
-	<description> bigdata-pipeline: bigdata learning </description>
-
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
