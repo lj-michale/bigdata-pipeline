@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ALL < TRACE< DEBUG < INFO < WARN < ERROR < FATAL < OFF -->
+<!-- status: log4j本身的日志信息级别 -->
+<Configuration status="INFO">
+    <!-- 配置变量,可以在下面通过变量名进行引用 -->
+    <Properties>
+        <Property name="BaseDir">logs</Property>
+        <Property name="LogName">info</Property>
+        <Property name="LogExtensionName">gz</Property>
+    </Properties>
+    <Appenders>
+        <!-- 日志写入文件 -->
+        <RollingFile
+                name="RollingFile"
+                fileName="${BaseDir}/${LogName}.${LogExtensionName}"
+                filePattern="${BaseDir}/$${date:yyyy-MM}/logs-%d{yyyy-MM-dd-HH}-%i.${LogExtensionName}.gz"
+        >
+            <!-- 日志信息格式 -->
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] [%t] [%p] %c{1}.%M [%L] %m%n"/>
+            <!-- 判断哪些级别的日志可以写入该文件 -->
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <!-- 触发策略,决定何时触发文件的压缩, 满足下面任意一个条件都会触发压缩 -->
+            <Policies>
+                <!-- filePattern 中的最小粒度为单位, 每隔 interval 个单位时间压缩一次 -->
+                <!-- 比如: yyyy-MM-dd-HH, 则每隔5个小时压缩一次 -->
+                <TimeBasedTriggeringPolicy interval="5"/>
+                <!-- 文件大小超过500MB时压缩日志文件 -->
+                <SizeBasedTriggeringPolicy size="500MB"/>
+            </Policies>
+            <!--
+                max参数是与filePattern中的计数器%i配合使用,根据filePattern的不同max的含义也不同
+                1. 如果filePattern没有%i,则max不会生效
+                2. 如果filePattern没有时间格式,有%i, 文件个数达到max, 则会删除旧的日志文件
+                3. 如果filePattern有时间格式,有%i, 则时间格式相同时,文件个数达到max,则会删除旧的日志文件
+                例如 %d{yyyy-MM-dd-HH}, 如果某个小时的文件个数大于max,则会删除这个小时内的旧的日志文件
+            -->
+            <DefaultRolloverStrategy max="7">
+                <!-- 删除策略 -->
+                <!-- maxDepth=2: 表示该策略会应用于BaseDir子目录下的日志文件 -->
+                <Delete basePath="${BaseDir}" maxDepth="2">
+                    <!-- 下面的文件名策略,文件最新的修改时间策略,文件大小策略,文件个数策略都可以进行组合使用 -->
+                    <!-- IfAny 表示或, IfAll 表示与 -->
+                    <!-- 如果filePattern中包含时间格式,则IfFileName策略会按照时间格式维度进行判断 -->
+                    <!--
+                        例如时间格式为%d{yyyy-MM-dd-HH},以2022-10-01-12的文件为例
+                        info-2022-10-10-12-1.log.gz
+                        info-2022-10-10-12-2.log.gz
+                        info-2022-10-10-12-3.log.gz
+                        info-2022-10-10-12-4.log.gz
+                        1. 将2022-10-01-12的所有文件进行一次逻辑判断
+                        2. 如果文件都超过30天未修改
+                        3. 满足下面两个任意一个条件即可删除
+                        3.1 2022-10-01-12 文件总大小大于5GB
+                        3.2 2022-10-01-12 文件总个数大于3个
+                    -->
+                    <IfFileName glob="*/${LogName}-*.${LogExtensionName}.gz">
+                        <IfLastModified age="30d">
+                            <IfAny>
+                                <IfAccumulatedFileSize exceeds="5GB"/>
+                                <IfAccumulatedFileCount exceeds="3"/>
+                            </IfAny>
+                        </IfLastModified>
+                    </IfFileName>
+                </Delete>
+                <!-- maxDepth=1: 表示该策略会应用于BaseDir目录下的日志文件 -->
+                <Delete basePath="${BaseDir}" maxDepth="1">
+                    <IfLastModified age="10d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!-- 输出到控制台的日志信息 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <ThresholdFilter level="INFO"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd-HH:mm:ss}] [%-15t] [%-5p] - %-35C{1} %M - %m%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+

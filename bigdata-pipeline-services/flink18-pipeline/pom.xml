@@ -13,6 +13,9 @@
 
     <properties>
         <flink.version>1.18.1</flink.version>
+        <log4j.version>2.16.0</log4j.version>
+        <slf4j2.version>2.0.7</slf4j2.version>
+        <slf4j2.api.version>2.0.7</slf4j2.api.version>
     </properties>
 
     <dependencies>
@@ -23,7 +26,12 @@
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-streaming-scala_2.12</artifactId>
+            <artifactId>flink-java</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java</artifactId>
             <version>${flink.version}</version>
         </dependency>
         <dependency>
@@ -31,6 +39,43 @@
             <artifactId>flink-statebackend-rocksdb</artifactId>
             <version>${flink.version}</version>
         </dependency>
+        <!-- ############## 本地调试需要依赖 start ####################### -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-walkthrough-common</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <!-- Flink本地测试客户端依赖 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-clients</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <!-- Flink本地测试wei ui依赖 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-runtime-web</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <!-- 日志输出 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>2.0.7</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- ############## 本地调试需要依赖 end ####################### -->
+
     </dependencies>
 
     <build>
