@@ -24,12 +24,16 @@ import static org.apache.flink.api.common.eventtime.WatermarkStrategy.forMonoton
  * @date: 2024/1/26 11:39
  */
 public class WatermarkOutOfOrdermessDemo {
+
     public static void main(String[] args) throws Exception {
+
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
+
         SingleOutputStreamOperator<WaterSensor> sensorDS = env
                 .socketTextStream("localhost", 7777)
                 .map(new WaterSensorMapFunction());
+
         //todo 定制水位线策略
         WatermarkStrategy<WaterSensor> watermarkStrategy = WatermarkStrategy
 //                *******
@@ -65,6 +69,9 @@ public class WatermarkOutOfOrdermessDemo {
                             }
                         }
                 ).print();
+
         env.execute();
+
     }
+
 }
