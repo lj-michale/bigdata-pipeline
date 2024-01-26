@@ -13,6 +13,14 @@ public class Event {
 
     private String url;
 
+    public long getTimestamps() {
+        return System.currentTimeMillis();
+    }
+
+    public void setTimestamps(long timestamps) {
+        this.timestamps = timestamps;
+    }
+
     private long timestamps;
 
     @Override
