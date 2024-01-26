@@ -1,4 +1,4 @@
-package org.turing.flink;
+package org.turing.flink.pipeline.other;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
