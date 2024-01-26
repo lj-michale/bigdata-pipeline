@@ -1,6 +1,7 @@
 package org.turing.flink.pipeline.other;
 
 import org.apache.flink.api.common.eventtime.*;
+import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.turing.flink.bean.Event;
 import org.turing.flink.source.ClickSource;
@@ -18,7 +19,10 @@ public class CustomPeriodicWatermarkExample {
 
     public static void main(String[] args) throws Exception {
 
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        Configuration conf = new Configuration();
+        conf.setInteger("rest.port", 8081);
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment(conf);
+
         env.addSource(new ClickSource())
                 .assignTimestampsAndWatermarks(new CustomWatermarkStrategy())
                 .print();
