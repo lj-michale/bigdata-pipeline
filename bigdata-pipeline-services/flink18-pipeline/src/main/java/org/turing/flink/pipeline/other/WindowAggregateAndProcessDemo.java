@@ -21,7 +21,6 @@ import org.turing.flink.function.WaterSensorMapFunction;
  * @author: lj.michale
  * @date: 2024/1/26 15:42
  */
-
 public class WindowAggregateAndProcessDemo {
 
     public static void main(String[] args) throws Exception {
@@ -32,7 +31,6 @@ public class WindowAggregateAndProcessDemo {
         SingleOutputStreamOperator<WaterSensor> sensorDS = env
                 .socketTextStream("hadoop102", 7777)
                 .map(new WaterSensorMapFunction());
-
         KeyedStream<WaterSensor, String> sensorKS = sensorDS.keyBy(sensor -> sensor.getId());
 
         // 1. 窗口分配器
