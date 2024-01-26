@@ -56,8 +56,7 @@ public class WindowProcessDemo {
 //                        }
 //                )
         SingleOutputStreamOperator<String> process = sensorWS
-                .process(
-                        new ProcessWindowFunction<WaterSensor, String, String, TimeWindow>() {
+                .process(new ProcessWindowFunction<WaterSensor, String, String, TimeWindow>() {
                             /**
                              * 全窗口函数计算逻辑：  窗口触发时才会调用一次，统一计算窗口的所有数据
                              * @param s   分组的key
@@ -73,11 +72,8 @@ public class WindowProcessDemo {
                                 long endTs = context.window().getEnd();
                                 String windowStart = DateFormatUtils.format(startTs, "yyyy-MM-dd HH:mm:ss.SSS");
                                 String windowEnd = DateFormatUtils.format(endTs, "yyyy-MM-dd HH:mm:ss.SSS");
-
                                 long count = elements.spliterator().estimateSize();
-
                                 out.collect("key=" + s + "的窗口[" + windowStart + "," + windowEnd + ")包含" + count + "条数据===>" + elements.toString());
-
                             }
                         }
                 );
@@ -85,5 +81,7 @@ public class WindowProcessDemo {
         process.print();
 
         env.execute();
+
     }
+
 }
