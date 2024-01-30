@@ -21,11 +21,11 @@ import java.time.Duration;
  * @date: 2024/1/26 17:16
  */
 public class WatermarkIdlenessDemo {
+
     public static void main(String[] args) throws Exception {
+
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
         env.setParallelism(2);
-
 
         // 自定义分区器：数据%分区数，只输入奇数，都只会去往map的一个子任务
         SingleOutputStreamOperator<Integer> socketDS = env

@@ -28,9 +28,11 @@ public class CustomPeriodicWatermarkExample {
                 .print();
 
         env.execute();
-
     }
 
+    /**
+     * @desri CustomWatermarkStrategy
+     * */
     public static class CustomWatermarkStrategy implements WatermarkStrategy<Event> {
 
         @Override

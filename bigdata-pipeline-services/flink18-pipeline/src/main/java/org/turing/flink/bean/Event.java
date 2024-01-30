@@ -13,6 +13,8 @@ public class Event {
 
     private String url;
 
+    private long timestamps;
+
     public long getTimestamps() {
         return System.currentTimeMillis();
     }
@@ -20,8 +22,6 @@ public class Event {
     public void setTimestamps(long timestamps) {
         this.timestamps = timestamps;
     }
-
-    private long timestamps;
 
     @Override
     public String toString() {
